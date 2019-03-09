@@ -1,0 +1,9 @@
+package: github.com/xuruiray/go-web-framework
+import:
+- package: github.com/parnurzeal/gorequest
+  version: ^0.2.15
+- package: github.com/xuruiray/gosql
+- package: upper.io/db.v3
+  version: ^3.5.7
+  subpackages:
+  - lib/sqlbuilder
