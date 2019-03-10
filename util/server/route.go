@@ -9,7 +9,7 @@ func initRouter() *chi.Mux {
 	mux := chi.NewMux()
 
 	// 查询特征依赖关系
-	mux.HandleFunc("/hello", controller.Hello)
+	mux.Handle("/hello", &BaseHandler{controller.Hello})
 
 	return mux
 }

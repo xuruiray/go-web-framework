@@ -1,5 +1,5 @@
 package dao
 
 const (
-	testTableName = "test"
+	testTableName = "test_table_name"
 )

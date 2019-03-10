@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	selectTestPoByID = "select * from $ where id>#id;"
+	selectTestPoByID = "select * from #table_name where id>$id;"
 )
 
 func TestDao(ctx context.Context, id int) ([]model.TestPo, error) {
@@ -19,7 +19,7 @@ func TestDao(ctx context.Context, id int) ([]model.TestPo, error) {
 		"id": id,
 	}
 
-	err := mysql.GetList(ctx, testTableName, selectTestPoByID, params, resultList)
+	err := mysql.GetList(ctx, testTableName, selectTestPoByID, params, &resultList)
 	if err != nil {
 		logger.Error(ctx, "test get list failed|sql=%v|params=%v", selectTestPoByID, params)
 		return nil, err

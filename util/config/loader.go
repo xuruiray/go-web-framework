@@ -7,6 +7,20 @@ import (
 	"strings"
 )
 
+func Init(file string) error {
+
+	var (
+		err error
+	)
+
+	err = LoadConfig(file, &MainConfig)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // LoadConfig 解析json文件
 func LoadConfig(filename string, result interface{}) error {
 	var (

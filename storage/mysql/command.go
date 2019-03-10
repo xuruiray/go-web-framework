@@ -2,7 +2,7 @@ package mysql
 
 import (
 	"context"
-	"fmt"
+	"github.com/xuruiray/go-web-framework/util/config"
 	"strings"
 
 	"github.com/xuruiray/gosql"
@@ -10,12 +10,20 @@ import (
 )
 
 // 初始化 mysql 连接
-func Init() {
-	var err error
-	conn, err = gosql.GetMySQLConn("", "", "", "")
+func Init(file string) error {
+
+	var (
+		err         error
+		mysqlConfig config.MySQLConfig
+	)
+
+	err = config.LoadConfig(file, &mysqlConfig)
 	if err != nil {
-		fmt.Println("mysql connect init failed")
+		return err
 	}
+
+	conn, err = gosql.GetMySQLConn(mysqlConfig.UserName, mysqlConfig.Password, mysqlConfig.IP, mysqlConfig.DB)
+	return err
 }
 
 var conn sqlbuilder.Database
@@ -28,14 +36,14 @@ func Execute(ctx context.Context, tableName string, sqlStr string, params map[st
 
 // GetList 封装查询方法 查询多行数据 结果封入res中
 func GetList(ctx context.Context, tableName string, sqlStr string, params map[string]interface{}, res interface{}) error {
-
-	return nil
+	params["table_name"] = tableName
+	return gosql.QueryList(conn, sqlStr, params, res)
 }
 
 // GetOne 封装查询方法 查询单行数据 结果封入res中
 func GetOne(ctx context.Context, tableName string, sqlStr string, params map[string]interface{}, res interface{}) error {
-
-	return nil
+	params["table_name"] = tableName
+	return gosql.QueryList(conn, sqlStr, params, res)
 }
 
 // IsDuplicatedMySQLError 是否是重复键

@@ -1,0 +1,59 @@
+hash: feb398ad417bd1cb92c6299177a16b4cad0f5ddf5cb0cc90c7c5d3e72802d069
+updated: 2019-03-10T17:14:19.809787+08:00
+imports:
+- name: github.com/cch123/binding
+  version: eeb39202252be4f070173a7db69baac838f942bc
+  subpackages:
+  - internal/form
+  - internal/proto
+- name: github.com/go-chi/chi
+  version: da24bba8dcd4021cafac38724bf10dccc97c3e36
+- name: github.com/go-sql-driver/mysql
+  version: 72cd26f257d44c1114970e19afddcd812016007e
+- name: github.com/gomodule/redigo
+  version: 9c11da706d9b7902c6da69c592f75637793fe121
+  subpackages:
+  - internal
+  - redis
+- name: github.com/konsorten/go-windows-terminal-sequences
+  version: f55edac94c9bbba5d6182a4be46d86a2c9b5b50e
+- name: github.com/moul/http2curl
+  version: 9ac6cf4d929b2fa8fd2d2e6dec5bb0feb4f4911d
+- name: github.com/parnurzeal/gorequest
+  version: a578a48e8d6ca8b01a3b18314c43c6716bb5f5a3
+- name: github.com/pkg/errors
+  version: ba968bfe8b2f7e042a574c888954fccecfa385b4
+- name: github.com/sirupsen/logrus
+  version: e1e72e9de974bd926e5c56f83753fba2df402ce5
+- name: github.com/xuruiray/gosql
+  version: b39d511378f351585c8536766d56d6272327a312
+- name: golang.org/x/crypto
+  version: c2843e01d9a2bc60bb26ad24e09734fdc2d9ec58
+  subpackages:
+  - ssh/terminal
+- name: golang.org/x/net
+  version: 16b79f2e4e95ea23b2bf9903c9809ff7b013ce85
+  subpackages:
+  - publicsuffix
+- name: golang.org/x/sys
+  version: 980fc434d28e11f0a5c1ae102a263b8c56641011
+  subpackages:
+  - unix
+  - windows
+- name: google.golang.org/appengine
+  version: e9657d882bb81064595ca3b56cbe2546bbabf7b1
+  subpackages:
+  - cloudsql
+- name: upper.io/db.v3
+  version: 2f58dea678dbdcd3710158e8572025ef4d2c6df7
+  subpackages:
+  - internal/cache
+  - internal/cache/hashstructure
+  - internal/immutable
+  - internal/sqladapter
+  - internal/sqladapter/compat
+  - internal/sqladapter/exql
+  - lib/reflectx
+  - lib/sqlbuilder
+  - mysql
+testImports: []

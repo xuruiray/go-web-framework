@@ -1,12 +1,21 @@
 package controller
 
 import (
+	"context"
 	"fmt"
+	"github.com/gin-gonic/gin/json"
+	"github.com/xuruiray/go-web-framework/model"
 	"github.com/xuruiray/go-web-framework/service"
-	"net/http"
 )
 
-func Hello(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(service.TestService(r.Context(), 1))
-	w.Write([]byte("hello"))
+func Hello(ctx context.Context, request *model.TestRequest) (*model.TestResponse, error) {
+	fmt.Println(request.ID)
+	resultList, err := service.TestService(ctx, request.ID)
+	byteArray, _ := json.Marshal(resultList)
+
+	result := model.TestResponse{
+		Data: string(byteArray),
+	}
+
+	return &result, err
 }
