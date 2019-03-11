@@ -8,7 +8,7 @@ import (
 	"reflect"
 	"syscall"
 
-	"github.com/cch123/binding"
+	"github.com/xuruiray/binding"
 	"github.com/xuruiray/go-web-framework/util/logger"
 )
 
@@ -93,8 +93,7 @@ func bind(r *http.Request, dst interface{}) error {
 		contentType = "application/x-www-form-urlencoded"
 	}
 
-	b := binding.Default(r.Method, contentType)
-	return b.Bind(r, dst)
+	return binding.Binder(r.Method, contentType).Bind(r, dst)
 }
 
 func contentType(r *http.Request) string {

@@ -13,7 +13,7 @@ import (
 )
 
 // ServiceManager 装载了 HTTP Client 的配置与链接
-var ServiceManager map[string]*config.ServiceClient
+var ServiceManager map[string]*config.RPCClient
 
 // Get 封装GET方法
 func Get(ctx context.Context, serviceName string, params map[string]string) ([]byte, error) {

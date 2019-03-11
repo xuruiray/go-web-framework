@@ -2,8 +2,9 @@ package controller
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
-	"github.com/gin-gonic/gin/json"
+
 	"github.com/xuruiray/go-web-framework/model"
 	"github.com/xuruiray/go-web-framework/service"
 )
