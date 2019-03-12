@@ -9,12 +9,15 @@ import (
 	"syscall"
 
 	"github.com/xuruiray/binding"
+	"github.com/xuruiray/go-web-framework/middleware"
+	"github.com/xuruiray/go-web-framework/util/config"
 	"github.com/xuruiray/go-web-framework/util/logger"
 )
 
 // Init : 初始化 web server
 func Init(port string) error {
 
+	middleware.InitRateLimit(config.MainConfig.RateLimit)
 	mux := initRouter()
 
 	if port[0] != ':' {

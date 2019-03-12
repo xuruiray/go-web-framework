@@ -18,8 +18,9 @@ const (
 var MainConfig AppConfig
 
 type AppConfig struct {
-	Name string `json:"name"`
-	Port string `json:"port"`
+	Name      string `json:"name"`
+	Port      string `json:"port"`
+	RateLimit int    `json:"rate_limit"`
 }
 
 type MySQLConfig struct {
