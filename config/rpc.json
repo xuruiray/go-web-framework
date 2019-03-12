@@ -1,3 +1,20 @@
 {
-
+  "test01": {
+    "service_name": "test01",
+    "ip": ["127.0.0.1:8081", "127.0.0.1:8080"],
+    "url": "/test",
+    "retry_count": 3,
+    "retry_timeout_ms": 100,
+    "conn_timeout_ms": 100,
+    "max_idle_conns_per_host": 10
+  },
+  "test02": {
+    "service_name": "test02",
+    "ip": ["127.0.0.1:8081", "127.0.0.1:8080"],
+    "url": "/test",
+    "retry_count": 3,
+    "retry_timeout_ms": 100,
+    "conn_timeout_ms": 100,
+    "max_idle_conns_per_host": 10
+  }
 }

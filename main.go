@@ -2,13 +2,15 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
+
+	"github.com/xuruiray/go-web-framework/rpc"
 	"github.com/xuruiray/go-web-framework/storage/mysql"
 	"github.com/xuruiray/go-web-framework/storage/redis"
 	"github.com/xuruiray/go-web-framework/util/config"
 	"github.com/xuruiray/go-web-framework/util/server"
-	"os"
-	"os/signal"
-	"syscall"
 )
 
 func main() {
@@ -30,6 +32,12 @@ func main() {
 
 	fmt.Println("init redis")
 	err = redis.Init(config.CacheConfigFile)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println("init rpc")
+	err = rpc.Init(config.RPCConfigFile)
 	if err != nil {
 		fmt.Println(err)
 	}

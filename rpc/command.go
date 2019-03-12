@@ -4,16 +4,27 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/xuruiray/go-web-framework/util/config"
 	"math/rand"
 	"net/http"
 	"time"
 
 	"github.com/parnurzeal/gorequest"
+	"github.com/xuruiray/go-web-framework/util/config"
 )
 
 // ServiceManager 装载了 HTTP Client 的配置与链接
 var ServiceManager map[string]*config.RPCClient
+
+// 初始化 mysql 连接
+func Init(file string) (err error) {
+
+	err = config.LoadConfig(file, &ServiceManager)
+	if err != nil {
+		return err
+	}
+
+	return
+}
 
 // Get 封装GET方法
 func Get(ctx context.Context, serviceName string, params map[string]string) ([]byte, error) {

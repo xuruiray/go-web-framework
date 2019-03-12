@@ -1,3 +1,7 @@
 {
-  "ip": "127.0.0.1:6379"
+  "ip": "127.0.0.1:6379",
+  "max_idle": 20,
+  "max_active":50,
+  "idle_timeout_ms": 500,
+  "max_conn_life_time_ms": 5000
 }

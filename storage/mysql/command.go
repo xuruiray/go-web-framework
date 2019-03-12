@@ -10,12 +10,9 @@ import (
 )
 
 // 初始化 mysql 连接
-func Init(file string) error {
+func Init(file string) (err error) {
 
-	var (
-		err         error
-		mysqlConfig config.MySQLConfig
-	)
+	var mysqlConfig config.MySQLConfig
 
 	err = config.LoadConfig(file, &mysqlConfig)
 	if err != nil {

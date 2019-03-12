@@ -9,6 +9,8 @@ const (
 	DataBaseConfigFile = "database.json"
 	// CacheConfigFile  缓存配置文件路径
 	CacheConfigFile = "cache.json"
+	// RPCConfigFile RPC配置文件路径
+	RPCConfigFile = "rpc.json"
 	// LoggerConfigFile 日志配置文件路径
 	LoggerConfigFile = "logger.conf"
 )
@@ -28,7 +30,11 @@ type MySQLConfig struct {
 }
 
 type CacheConfig struct {
-	IP string `json:"ip"`
+	IP                string `json:"ip"`
+	MaxIdle           int    `json:"max_idle"`
+	MaxActive         int    `json:"max_active"`
+	IdleTimeoutMs     int    `json:"idle_timeout_ms"`
+	MaxConnLifeTimeMs int    `json:"max_conn_life_time_ms"`
 }
 
 type RPCClient struct {
