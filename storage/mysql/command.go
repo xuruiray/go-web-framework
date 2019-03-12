@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/xuruiray/go-web-framework/util/config"
 	"strings"
+	"time"
 
 	"github.com/xuruiray/gosql"
 	"upper.io/db.v3/lib/sqlbuilder"
@@ -20,6 +21,9 @@ func Init(file string) (err error) {
 	}
 
 	conn, err = gosql.GetMySQLConn(mysqlConfig.UserName, mysqlConfig.Password, mysqlConfig.IP, mysqlConfig.DB)
+	conn.SetConnMaxLifetime(time.Duration(mysqlConfig.ConnMaxLifeTimeMs) * time.Millisecond)
+	conn.SetMaxIdleConns(mysqlConfig.MaxIdleConn)
+	conn.SetMaxOpenConns(mysqlConfig.MaxOpenConn)
 	return err
 }
 

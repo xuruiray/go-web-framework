@@ -24,10 +24,13 @@ type AppConfig struct {
 }
 
 type MySQLConfig struct {
-	UserName string `json:"username"`
-	Password string `json:"password"`
-	IP       string `json:"ip"`
-	DB       string `json:"db"`
+	UserName          string `json:"username"`
+	Password          string `json:"password"`
+	IP                string `json:"ip"`
+	DB                string `json:"db"`
+	MaxOpenConn       int    `json:"max_open_conn"`
+	MaxIdleConn       int    `json:"max_idle_conn"`
+	ConnMaxLifeTimeMs int    `json:"conn_max_life_time_ms"`
 }
 
 type CacheConfig struct {

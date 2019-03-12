@@ -2,5 +2,8 @@
   "username": "root",
   "password":"1324",
   "ip": "127.0.0.1:3306",
-  "db":"test"
+  "db":"test",
+  "max_open_conn": 100,
+  "max_idle_conn": 50,
+  "conn_max_life_time_ms": 200
 }
