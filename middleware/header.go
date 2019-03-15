@@ -19,6 +19,8 @@ func HeaderSetter(next http.Handler) http.Handler {
 		}
 
 		ctx = request.SetLogRecord(ctx, record)
+		ctx = request.SetRequest(ctx, req)
+
 		next.ServeHTTP(w, req.WithContext(ctx))
 	}
 	return http.HandlerFunc(f)

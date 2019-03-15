@@ -3,12 +3,14 @@ package request
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"sync/atomic"
 	"time"
 )
 
 // ContentKey 打日志的 key
 const ContentKey = "logRecordContextKey"
+const RequestKey = "requestContextKey"
 
 type keyType string
 
@@ -64,8 +66,18 @@ func GetLogRecord(ctx context.Context) (record *LogRecord) {
 	return &LogRecord{}
 }
 
-func GenLogRecord() {
+// SetRequest 将 req 存入 context
+func SetRequest(ctx context.Context, req *http.Request) context.Context {
+	return context.WithValue(ctx, RequestKey, req)
+}
 
+// GetRequest 将 req 取出
+func GetRequest(ctx context.Context, req *http.Request) *http.Request {
+	result := ctx.Value(RequestKey)
+	if req, ok := result.(*http.Request); ok {
+		return req
+	}
+	return nil
 }
 
 // String logRecord to string
