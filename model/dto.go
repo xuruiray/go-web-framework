@@ -1,7 +1,8 @@
 package model
 
 type TestRequest struct {
-	ID int `form:"id"`
+	ID      int `form:"id"`
+	RouteID int `route:"route_id"`
 }
 
 type TestResponse struct {

@@ -8,9 +8,12 @@ import (
 	"reflect"
 	"syscall"
 
+	"github.com/go-chi/chi"
+
 	"github.com/xuruiray/binding"
 	"github.com/xuruiray/go-web-framework/middleware"
 	"github.com/xuruiray/go-web-framework/util/config"
+	"github.com/xuruiray/go-web-framework/util/convert"
 	"github.com/xuruiray/go-web-framework/util/logger"
 )
 
@@ -89,19 +92,31 @@ func (bh *BaseHandler) bindRequest(r *http.Request) (request Request, err error)
 }
 
 // Bind 将 http 的 request body，或 form 绑定到 dst 的 interface
-func bind(r *http.Request, dst interface{}) error {
+func bind(r *http.Request, dst interface{}) (err error) {
 	contentType := contentType(r)
 	// 默认为 form
 	if len(contentType) == 0 {
 		contentType = "application/x-www-form-urlencoded"
 	}
 
-	return binding.Binder(r.Method, contentType).Bind(r, dst)
+	err = binding.Binder(r.Method, contentType).Bind(r, dst)
+	err = bindRoute(r, dst)
+
+	return
+}
+
+func bindRoute(req *http.Request, dst interface{}) error {
+	// 转换 restful 参数至 http 参数中
+	urlParams := chi.RouteContext(req.Context()).URLParams
+	for i, key := range urlParams.Keys {
+		req.Form[key] = append(req.Form[key], urlParams.Values[i])
+	}
+
+	return convert.MapToStructByTag(req.Form, dst, "route")
 }
 
 func contentType(r *http.Request) string {
 	var ct string
-
 	if values, ok := r.Header["Content-Type"]; ok {
 		ct = values[0]
 	}
@@ -111,6 +126,5 @@ func contentType(r *http.Request) string {
 			ct = ct[:i]
 		}
 	}
-
 	return ct
 }

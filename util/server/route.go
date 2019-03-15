@@ -13,7 +13,7 @@ func initRouter() *chi.Mux {
 	mux.Use(middleware.HeaderSetter)
 
 	// 查询特征依赖关系
-	mux.Handle("/hello", &BaseHandler{controller.Hello})
+	mux.Handle("/hello/{route_id}", &BaseHandler{controller.Hello})
 
 	return mux
 }
