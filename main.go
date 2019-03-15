@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"net/http"
+	_ "net/http/pprof"
 	"os"
 	"os/signal"
 	"syscall"
@@ -17,6 +19,8 @@ func main() {
 	var (
 		err error
 	)
+
+	go http.ListenAndServe(":8015", nil)
 
 	fmt.Println("init app")
 	err = config.Init(config.AppConfigFile)
