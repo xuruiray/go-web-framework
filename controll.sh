@@ -4,7 +4,7 @@ workspace=$(cd $(dirname $0) && pwd -P)
 deploy_path=${workspace}
 cd ${workspace}
 
-module=bin/ufs
+module=bin/app
 app=${module}
 
 ## function
