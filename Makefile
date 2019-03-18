@@ -1,9 +1,10 @@
+export GO111MODULE=on
 all: prod
 
 clean:
 	rm -rf output
 
-prod: clean output dep build
+prod: clean output build
 	cp ./config/* ./output/config
 	cp ./controll.sh ./output/
 	mv ./app ./output/bin
@@ -16,6 +17,3 @@ output:
 
 build:
 	go build  -o app -tags="Pprof" -gcflags="-N -l"
-
-dep:
-	export GO111MODULE=on
