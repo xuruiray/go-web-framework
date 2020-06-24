@@ -20,6 +20,8 @@ func main() {
 		err error
 	)
 
+	logo()
+
 	go http.ListenAndServe(":8015", nil)
 
 	fmt.Println("init app")
@@ -62,4 +64,13 @@ func initSignal() {
 	signal.Notify(c, syscall.SIGINT, syscall.SIGALRM, syscall.SIGTERM, syscall.SIGUSR1)
 	sign := <-c
 	fmt.Println("app terminated by signal", sign)
+}
+
+func logo() {
+	println(`	
+	 _   _      _ _        __        __         _     _
+	| | | | ___| | | ___   \ \      / /__  _ __| | __| |
+	| |_| |/ _ \ | |/ _ \   \ \ /\ / / _ \| |__| |/ _| |
+	|  _  |  __/ | | (_) |   \ V  V / (_) | |  | | (_| |
+	|_| |_|\___|_|_|\___/     \_/\_/ \___/|_|  |_|\____|`)
 }
