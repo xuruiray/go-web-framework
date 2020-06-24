@@ -67,6 +67,7 @@ func initSignal() {
 }
 
 func logo() {
+	// http://asciiarts.net
 	println(`	
 	 _   _      _ _        __        __         _     _
 	| | | | ___| | | ___   \ \      / /__  _ __| | __| |
