@@ -1,5 +1,5 @@
 {
-  "name":"go-web-framework",
-  "port":"8080",
+  "name": "go-web-framework",
+  "port": "8080",
   "rate_limit": 200
 }

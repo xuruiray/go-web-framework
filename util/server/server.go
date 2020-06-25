@@ -20,7 +20,10 @@ import (
 // Init : 初始化 web server
 func Init(port string) error {
 
+	// 初始化 限流
 	middleware.InitRateLimit(config.MainConfig.RateLimit)
+
+	// 初始化 route
 	mux := initRouter()
 
 	if port[0] != ':' {
@@ -33,7 +36,7 @@ func Init(port string) error {
 			process := os.Process{Pid: pid}
 			err := process.Signal(syscall.SIGINT)
 			if err != nil {
-				logger.Warn(context.TODO(), "shutdown http server failed")
+				logger.Warnf(context.TODO(), "shutdown http server failed")
 			}
 		}
 	}()
@@ -55,7 +58,7 @@ func (bh *BaseHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	request, err := bh.bindRequest(r)
 	if err != nil {
-		logger.Error(r.Context(), "bind request failed|%v", err)
+		logger.Errorf(r.Context(), "bind request failed|%v", err)
 	}
 
 	returnValues := reflect.ValueOf(bh.handleFunc).
@@ -64,7 +67,7 @@ func (bh *BaseHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	response := returnValues[0].Interface()
 
 	if err := responseJSON(r.Context(), w, response); err != nil {
-		logger.Error(r.Context(), "response json failed|%v", err)
+		logger.Errorf(r.Context(), "response json failed|%v", err)
 	}
 }
 

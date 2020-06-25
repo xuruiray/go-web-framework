@@ -21,10 +21,14 @@ func Init(file string) (err error) {
 	}
 
 	conn, err = gosql.GetMySQLConn(mysqlConfig.UserName, mysqlConfig.Password, mysqlConfig.IP, mysqlConfig.DB)
+	if err != nil {
+		return err
+	}
+
 	conn.SetConnMaxLifetime(time.Duration(mysqlConfig.ConnMaxLifeTimeMs) * time.Millisecond)
 	conn.SetMaxIdleConns(mysqlConfig.MaxIdleConn)
 	conn.SetMaxOpenConns(mysqlConfig.MaxOpenConn)
-	return err
+	return nil
 }
 
 var conn sqlbuilder.Database

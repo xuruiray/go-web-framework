@@ -11,7 +11,7 @@ app=${module}
 function start() {
 
     #使用supervisor启动
-    exec -c ./$app -deploy=${deploy_path}
+    exec -c ./$app
 
     # 启动成功, 退出码为 0
     exit 0

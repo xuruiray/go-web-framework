@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/xuruiray/go-web-framework/util/logger"
 	"net/http"
 	_ "net/http/pprof"
 	"os"
@@ -27,32 +28,40 @@ func main() {
 	fmt.Println("init app")
 	err = config.Init(config.AppConfigFile)
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
+	}
+
+	fmt.Println("init logger")
+	err = logger.Init(config.LoggerConfigFile)
+	if err != nil {
+		panic(err)
 	}
 
 	fmt.Println("init mysql")
 	err = mysql.Init(config.DataBaseConfigFile)
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
 
 	fmt.Println("init redis")
 	err = redis.Init(config.CacheConfigFile)
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
 
 	fmt.Println("init rpc")
 	err = rpc.Init(config.RPCConfigFile)
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
 
 	fmt.Println("init http server")
 	err = server.Init(config.MainConfig.Port)
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
+
+	fmt.Println("http://127.0.0.1:" + config.MainConfig.Port)
 
 	// wait for system quit
 	initSignal()

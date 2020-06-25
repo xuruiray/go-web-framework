@@ -24,6 +24,12 @@ type LogRecord struct {
 	SrcMethod string
 }
 
+// String logRecord to string
+func (r *LogRecord) String() string {
+	return fmt.Sprintf("traceid=%v|url=%v|method=%v|host=%v|remote=%v|",
+		r.TraceID, r.URL, r.Method, r.Host, r.Remote)
+}
+
 // LogID : request id
 var LogID int64
 
@@ -33,8 +39,8 @@ func init() {
 }
 
 // GenerateLogID 获取logId
-func GenerateLogID() int64 {
-	return atomic.AddInt64(&LogID, 1)
+func GenerateLogID() int {
+	return int(atomic.AddInt64(&LogID, 1))
 }
 
 //Set 将 k-v 存入 context
@@ -78,10 +84,4 @@ func GetRequest(ctx context.Context, req *http.Request) *http.Request {
 		return req
 	}
 	return nil
-}
-
-// String logRecord to string
-func (r *LogRecord) String() string {
-	return fmt.Sprintf("traceid=%s|url=%s|method=%s|host=%s|host=%s|remote=%s",
-		r.TraceID, r.URL, r.Method, r.Host, r.Remote)
 }

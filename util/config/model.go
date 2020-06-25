@@ -12,7 +12,7 @@ const (
 	// RPCConfigFile RPC配置文件路径
 	RPCConfigFile = "rpc.json"
 	// LoggerConfigFile 日志配置文件路径
-	LoggerConfigFile = "logger.conf"
+	LoggerConfigFile = "logger.json"
 )
 
 var MainConfig AppConfig
@@ -21,6 +21,12 @@ type AppConfig struct {
 	Name      string `json:"name"`
 	Port      string `json:"port"`
 	RateLimit int    `json:"rate_limit"`
+}
+
+type LoggerConfig struct {
+	Type  string `json:"type"`
+	Path  string `json:"file_path"`
+	Level string `json:"level"`
 }
 
 type MySQLConfig struct {

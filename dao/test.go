@@ -21,7 +21,7 @@ func TestDao(ctx context.Context, id int) ([]model.TestPo, error) {
 
 	err := mysql.GetList(ctx, testTableName, selectTestPoByID, params, &resultList)
 	if err != nil {
-		logger.Error(ctx, "test get list failed|sql=%v|params=%v", selectTestPoByID, params)
+		logger.Errorf(ctx, "test get list failed|sql=%v|params=%v", selectTestPoByID, params)
 		return nil, err
 	}
 
